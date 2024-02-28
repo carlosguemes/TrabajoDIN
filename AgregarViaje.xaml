@@ -7,6 +7,32 @@
         mc:Ignorable="d"
         Title="AgregarViaje" Height="450" Width="800"
         ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style x:Key="RoundButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="DeepSkyBlue"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="DodgerBlue"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/paisaje.png" Opacity="0.6"/>
@@ -24,9 +50,10 @@
         <ComboBox x:Name="TipoHotel" HorizontalAlignment="Left" Margin="280,225,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
         <ComboBox x:Name="TipoTransporte" HorizontalAlignment="Left" Margin="631,224,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="TipoViaje" HorizontalAlignment="Left" Margin="280,288,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="BotonContinuar" Content="Continuar" HorizontalAlignment="Center" Margin="0,348,0,0" VerticalAlignment="Top" Height="38" Width="84" Click="Click_Continuar"/>
+        <Button Style="{StaticResource RoundButtonStyle}" x:Name="BotonContinuar" Content="Continuar" HorizontalAlignment="Center" Margin="0,348,0,0" VerticalAlignment="Top" Height="38" Width="84" Click="Click_Continuar"/>
         <DatePicker x:Name="FechaIda" HorizontalAlignment="Left" Margin="280,160,0,0" VerticalAlignment="Top"/>
         <DatePicker x:Name="FechaVuelta" HorizontalAlignment="Left" Margin="631,160,0,0" VerticalAlignment="Top"/>
+        <Button Style="{StaticResource RoundButtonStyle}" x:Name="BotonCancelar" Content="Cancelar" Margin="667,348,0,0" Height="38" Width="84" Click="Click_Cancelar"/>
 
     </Grid>
 </Window>

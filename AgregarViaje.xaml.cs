@@ -100,16 +100,40 @@ namespace Troncal
                 tipoTransporte != "" &&
                 tipoViaje != "")
             {
-                Viaje viaje = new Viaje(origen, destino, (DateTime)fechaIda, (DateTime)fechaVuelta, tipoHotel, tipoTransporte, tipoViaje);
-                gestionarViajes.comboBox.Items.Add(viaje);
-                componente.MostrarMensaje("Confirmación", "El viaje se ha añadido con éxito", 0);
-                this.Close();
+                if (fechaIda >= fechaVuelta)
+                {
+                    componente.MostrarMensaje("Error", "La fecha de ida no puede ser posterior a la fecha de vuelta", 2);
+                }
+
+                else
+                {
+                    this.IsEnabled = false;
+                    Pagos subWindow = new Pagos(this);
+                    subWindow.Closed += subWindow_Closed;
+                    subWindow.Show();
+
+                    Viaje viaje = new Viaje(origen, destino, (DateTime)fechaIda, (DateTime)fechaVuelta, tipoHotel, tipoTransporte, tipoViaje);
+                    gestionarViajes.comboBox.Items.Add(viaje);
+                    componente.MostrarMensaje("Confirmación", "El viaje se ha añadido con éxito", 0);
+                    this.Close();
+                }
+   
             }
 
             else
             {
                 componente.MostrarMensaje("Advertencia", "Seleccione todos los datos para continuar", 1);
             }
+        }
+
+        private void Click_Cancelar(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void subWindow_Closed(object sender, EventArgs e)
+        {
+            this.IsEnabled = true;
         }
     }
 }

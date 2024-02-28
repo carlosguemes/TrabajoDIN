@@ -30,9 +30,7 @@ namespace Troncal
 
         private void Volver_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
-            GestionarClientes subWindow = new GestionarClientes();
-            subWindow.Show();
+            this.Close();
         }
 
         private void Confirmar_Click(object sender, RoutedEventArgs e)
@@ -47,6 +45,7 @@ namespace Troncal
                     Cliente cliente = new Cliente(nombre, dni, new List<Viajes>());
 
                     gestionaClientes.Lista.Items.Add(cliente);
+                    componente.MostrarMensaje("Información", "El cliente se ha añadido con éxito", 0);
                     this.Close();
                 }
                 else
