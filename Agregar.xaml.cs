@@ -81,5 +81,10 @@ namespace Troncal
 
             return valido;
         }
+
+        private void subWindow_Closed(object sender, EventArgs e)
+        {
+            this.IsEnabled = true;
+        }
     }
 }

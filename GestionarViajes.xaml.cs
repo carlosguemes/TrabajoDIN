@@ -52,6 +52,7 @@ namespace Troncal
         {
             comboBox.Items.Remove(comboBox.SelectedItem);
         }
+
     }
 
     public class Viaje

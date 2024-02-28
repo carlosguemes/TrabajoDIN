@@ -33,7 +33,7 @@ namespace Troncal
             List<Viajes> viajes = new List<Viajes>();
 
             Viajes viaje = new Viajes("Madrid", "Barcelona", DateTime.Now, DateTime.Now.AddDays(7), "Hotel de Lujo", "Avión", "CANCELADO");
-            Viajes viaje2 = new Viajes("Málaga", "Sevilla", DateTime.Now, DateTime.Now.AddDays(7), "Hotel Barato", "Tren", "CERRADO");
+            Viajes viaje2 = new Viajes("Málaga", "Sevilla", DateTime.Now.AddDays(8), DateTime.Now.AddDays(20), "Hotel Barato", "Tren", "CERRADO");
 
             viajes.Add(viaje);
             viajes.Add(viaje2);
@@ -62,9 +62,12 @@ namespace Troncal
             // Verificar si hay un cliente seleccionado
             if (Lista.SelectedItem is Cliente cliente)
             {
-                if (componente.AceptarRechazar("Cuidado", "¿Está seguro de que quiere borrar el cliente?").Equals(MessageBoxButton.Yes))
-                Lista.Items.Remove(cliente);
-                componente.MostrarMensaje("Información", "El cliente se ha eliminado correctamente", 0);
+                if (componente.AceptarRechazar("Cuidado", 
+                    "¿Está seguro de que quiere borrar el cliente?").Equals(MessageBoxResult.Yes)){
+                    Lista.Items.Remove(cliente);
+                    componente.MostrarMensaje("Información", "El cliente se ha eliminado correctamente", 0);
+                }
+               
             }
         }
 
@@ -82,6 +85,11 @@ namespace Troncal
                 componente.MostrarMensaje("Información del cliente", "Cliente: " + cliente.ToString() +
                     "\nDNI: " + cliente.DNI +
                     "\n\nViajes: \n" + sb.ToString(), 0);
+            }
+
+            else
+            {
+                componente.MostrarMensaje("Advertencia", "Debe seleccionar un cliente", 1);
             }
         }
 
