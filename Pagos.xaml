@@ -36,7 +36,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="/paisaje.png" Opacity="0.6"/>
         </Grid.Background>
-        <RadioButton x:Name="TrajetaCredito" Content="Tarjeta de Crédito" HorizontalAlignment="Left" Margin="188,137,0,0" VerticalAlignment="Top" Width="135"/>
+        <RadioButton x:Name="TarjetaCredito" Content="Tarjeta de Crédito" HorizontalAlignment="Left" Margin="188,137,0,0" VerticalAlignment="Top" Width="135"/>
         <RadioButton x:Name="Bizum" Content="Bizum" HorizontalAlignment="Left" Margin="188,174,0,0" VerticalAlignment="Top" Width="135"/>
         <RadioButton x:Name="Transferencia" Content="Transferencia" HorizontalAlignment="Left" Margin="188,0,0,0" VerticalAlignment="Center" Width="135"/>
         <Label Content="Proceso de pago" HorizontalAlignment="Center" Margin="0,49,0,0" VerticalAlignment="Top" Height="43" Width="140" RenderTransformOrigin="0.5,0.5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="16">
