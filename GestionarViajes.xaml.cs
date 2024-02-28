@@ -19,6 +19,7 @@ namespace Troncal
     /// </summary>
     public partial class GestionarViajes : Window
     {
+
         public GestionarViajes()
         {
             InitializeComponent();
@@ -53,6 +54,18 @@ namespace Troncal
             comboBox.Items.Remove(comboBox.SelectedItem);
         }
 
+        private void Agregar_Click(object sender, RoutedEventArgs e)
+        {
+            this.IsEnabled = false;
+            AgregarViaje subWindow = new AgregarViaje(this);
+            subWindow.Closed += subWindow_Closed;
+            subWindow.Show();
+        }
+
+        private void subWindow_Closed(object sender, EventArgs e)
+        {
+            this.IsEnabled = true;
+        }
     }
 
     public class Viaje
@@ -80,7 +93,12 @@ namespace Troncal
         override
         public String ToString()
         {
-            return (Origen + " - " + Destino + "\nIda: " + FechaIda.ToString() + " Vuelta: " + FechaVuelta.ToString() + "\n" + TipoHotel + " - " + TipoTransporte + " --- " + TipoViaje);
+            return (Origen + " - " + Destino + "\n" +
+                "Ida: " + FechaIda.ToString() + 
+                " Vuelta: " + FechaVuelta.ToString() + "\n" + 
+                TipoHotel + " - " + 
+                TipoTransporte + " --- " + 
+                TipoViaje);
         }
     }
 

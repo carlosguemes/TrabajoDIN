@@ -6,17 +6,45 @@
         xmlns:local="clr-namespace:Troncal"
         mc:Ignorable="d"
         Title="GestionarViajes" Height="450" Width="800">
+
+    <Window.Resources>
+        <Style x:Key="RoundButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="DeepSkyBlue"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="DodgerBlue"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/gestionar_viajes.png"/>
         </Grid.Background>
-        <Button Content="Volver" HorizontalAlignment="Left" Margin="677,370,0,0" VerticalAlignment="Top" Height="32" Width="79" Click="Volver_Click"/>
+        <Button Style="{StaticResource RoundButtonStyle}" Content="Volver" HorizontalAlignment="Left" Margin="677,370,0,0" VerticalAlignment="Top" Height="32" Width="79" Click="Volver_Click"/>
         <ComboBox x:Name="comboBox" HorizontalAlignment="Center" Margin="0,201,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBox_SelectionChanged">
 
         </ComboBox>
         <Label Content="Gestión de viajes" HorizontalAlignment="Center" Margin="0,33,0,0" VerticalAlignment="Top" Height="28" Width="122" Background="White" FontSize="14" FontWeight="Bold"/>
         <Label Content="Información de viajes" HorizontalAlignment="Center" Margin="0,168,0,0" VerticalAlignment="Top" Height="28" Width="122" Background="White"/>
-        <Button Content="Borrar" HorizontalAlignment="Center" Margin="0,268,0,0" VerticalAlignment="Top" Height="30" Width="54" Click="Borrar_Click"/>
+        <Button Style="{StaticResource RoundButtonStyle}" Content="Borrar" HorizontalAlignment="Center" Margin="0,268,0,0" VerticalAlignment="Top" Height="30" Width="54" Click="Borrar_Click"/>
+        <Button Style="{StaticResource RoundButtonStyle}" Content="Agregar viaje" Margin="567,172,0,0" Width="111" Height="51" Click="Agregar_Click"/>
 
     </Grid>
 </Window>

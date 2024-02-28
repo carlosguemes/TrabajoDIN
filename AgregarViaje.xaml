@@ -5,22 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Troncal"
         mc:Ignorable="d"
-        Title="AgregarViaje" Height="450" Width="800">
+        Title="AgregarViaje" Height="450" Width="800"
+        ResizeMode="NoResize">
     <Grid>
-        <Label Content="Añadir un nuevo viaje" Margin="0,42,0,357" Height="35" Width="204" FontSize="18" FontWeight="Bold"/>
-        <Label Content="Origen" Margin="128,95,585,304" Height="35" FontSize="18" FontWeight="Bold"/>
-        <Label Content="Destino" Margin="461,95,252,304" Height="35" FontSize="18" FontWeight="Bold"/>
-        <Label Content="Fecha de ida" Margin="128,154,546,245" Height="35" FontSize="18" FontWeight="Bold"/>
-        <Label Content="Fecha de vuelta" Margin="461,154,192,245" Height="35" FontSize="18" FontWeight="Bold"/>
-        <Label Content="Tipo de Hotel" Margin="128,217,546,182" Height="35" FontSize="18" FontWeight="Bold"/>
-        <Label Content="Transporte" Margin="461,217,224,182" Height="35" FontSize="18" FontWeight="Bold"/>
-        <Label Content="Tipo de Viaje" Margin="128,280,546,119" Height="35" FontSize="18" FontWeight="Bold"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="/paisaje.png" Opacity="0.6"/>
+        </Grid.Background>
+        <Label Content="Añadir un nuevo viaje" Margin="298,42,298,332" Width="204" FontSize="18" FontWeight="Bold"/>
+        <Label Content="Origen" Margin="128,95,0,0" Height="77" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label Content="Destino" Margin="461,95,0,0" Height="70" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label Content="Fecha de ida" Margin="128,154,525,199" FontSize="18" FontWeight="Bold"/>
+        <Label Content="Fecha de vuelta" Margin="461,154,0,0" Height="58" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label Content="Tipo de Hotel" Margin="128,217,0,0" Height="58" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label Content="Transporte" Margin="461,217,0,0" Height="62" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label Content="Tipo de Viaje" Margin="128,280,0,0" Height="61" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <ComboBox x:Name="Origen" HorizontalAlignment="Left" Margin="280,102,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="Destino" HorizontalAlignment="Left" Margin="631,102,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="TipoHotel" HorizontalAlignment="Left" Margin="280,225,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="TipoHotel" HorizontalAlignment="Left" Margin="280,225,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
         <ComboBox x:Name="TipoTransporte" HorizontalAlignment="Left" Margin="631,224,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="TipoViaje" HorizontalAlignment="Left" Margin="280,288,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Continuar" HorizontalAlignment="Center" Margin="0,348,0,0" VerticalAlignment="Top" Height="38" Width="84" Click="Click_Continuar"/>
+        <Button x:Name="BotonContinuar" Content="Continuar" HorizontalAlignment="Center" Margin="0,348,0,0" VerticalAlignment="Top" Height="38" Width="84" Click="Click_Continuar"/>
         <DatePicker x:Name="FechaIda" HorizontalAlignment="Left" Margin="280,160,0,0" VerticalAlignment="Top"/>
         <DatePicker x:Name="FechaVuelta" HorizontalAlignment="Left" Margin="631,160,0,0" VerticalAlignment="Top"/>
 

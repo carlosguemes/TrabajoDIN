@@ -19,14 +19,97 @@ namespace Troncal
     /// </summary>
     public partial class AgregarViaje : Window
     {
-        public AgregarViaje()
+        private GestionarViajes gestionarViajes;
+        private Componente componente = new Componente();
+        public AgregarViaje(GestionarViajes gestionarViajes)
         {
             InitializeComponent();
+            this.gestionarViajes = gestionarViajes;
+
+            List<String> origenes = new List<String>();
+            origenes.Add("Madrid");
+            origenes.Add("Viena");
+            origenes.Add("Ámsterdam");
+            origenes.Add("Edimburgo");
+            origenes.Add("Bruselas");
+
+            List<String> destinos = new List<String>();
+            destinos.Add("Barcelona");
+            destinos.Add("Roma");
+            destinos.Add("Bucarest");
+            destinos.Add("Praga");
+            destinos.Add("París");
+
+            List<String> tipoHotel = new List<String>();
+            tipoHotel.Add("Hotel de Lujo");
+            tipoHotel.Add("Hotel Standard");
+            tipoHotel.Add("Hotel Barato");
+
+            List<String> tipoTransporte = new List<String>();
+            tipoTransporte.Add("Avión");
+            tipoTransporte.Add("Autobús");
+            tipoTransporte.Add("Tren");
+
+            List<String> tipoViaje = new List<String>();
+            tipoViaje.Add("CERRADO");
+            tipoViaje.Add("CANCELADO");
+
+            foreach (String ciudad in origenes)
+            {
+                Origen.Items.Add(ciudad);
+            }
+               
+
+            foreach (String ciudad in destinos)
+            {
+                Destino.Items.Add(ciudad);
+            }
+
+            foreach (String hotel in tipoHotel)
+            {
+                TipoHotel.Items.Add(hotel);
+            }
+
+            foreach (String transporte in tipoTransporte)
+            {
+                TipoTransporte.Items.Add(transporte);
+            }
+
+            foreach (String viaje in tipoViaje)
+            {
+                TipoViaje.Items.Add(viaje);
+            }
+
         }
 
         private void Click_Continuar(object sender, RoutedEventArgs e)
         {
+            String origen = Origen.Text;
+            String destino = Destino.Text;
+            DateTime? fechaIda = FechaIda.SelectedDate;
+            DateTime? fechaVuelta = FechaVuelta.SelectedDate;
+            String tipoHotel = TipoHotel.Text;
+            String tipoTransporte = TipoTransporte.Text;
+            String tipoViaje = TipoViaje.Text;
 
+            if (origen != "" &&
+                destino != "" &&
+                fechaIda != null &&
+                fechaVuelta != null &&
+                tipoHotel != "" &&
+                tipoTransporte != "" &&
+                tipoViaje != "")
+            {
+                Viaje viaje = new Viaje(origen, destino, (DateTime)fechaIda, (DateTime)fechaVuelta, tipoHotel, tipoTransporte, tipoViaje);
+                gestionarViajes.comboBox.Items.Add(viaje);
+                componente.MostrarMensaje("Confirmación", "El viaje se ha añadido con éxito", 0);
+                this.Close();
+            }
+
+            else
+            {
+                componente.MostrarMensaje("Advertencia", "Seleccione todos los datos para continuar", 1);
+            }
         }
     }
 }

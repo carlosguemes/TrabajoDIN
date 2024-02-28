@@ -69,6 +69,11 @@ namespace Troncal
                 }
                
             }
+
+            else
+            {
+                componente.MostrarMensaje("Advertencia", "Debe seleccionar un cliente", 1);
+            }
         }
 
         private void Informacion_Click(object sender, RoutedEventArgs e)
