@@ -20,14 +20,28 @@ namespace Troncal
     /// </summary>
     public partial class GestionarClientes : Window
     {
+        public String Nombre { get; set; }
+        public String DNI { get; set; }
+
+        private Componente componente = new Componente();
+
         public GestionarClientes()
         {
+
             InitializeComponent();
 
-            Lista.Items.Add("Carlos");
-            Lista.Items.Add("Marcos");
-            Lista.Items.Add("Marco");
-            Lista.Items.Add("Wences");
+            List<Viajes> viajes = new List<Viajes>();
+
+            Viajes viaje = new Viajes("Madrid", "Barcelona", DateTime.Now, DateTime.Now.AddDays(7), "Hotel de Lujo", "Avión", "CANCELADO");
+            Viajes viaje2 = new Viajes("Málaga", "Sevilla", DateTime.Now, DateTime.Now.AddDays(7), "Hotel Barato", "Tren", "CERRADO");
+
+            viajes.Add(viaje);
+            viajes.Add(viaje2);
+
+            Lista.Items.Add(new Cliente("Carlos Güemes", "48246430C", viajes));
+            Lista.Items.Add(new Cliente("Marcos García-Seco", "12345678Q", viajes));
+            Lista.Items.Add(new Cliente("Marco Martínez", "83745120U", viajes));
+            Lista.Items.Add(new Cliente("Óscar Rueda", "29384756T", viajes));
 
         }
 
@@ -40,26 +54,101 @@ namespace Troncal
 
         private void Lista_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (Lista.SelectedItem != null)
-            {
-                MessageBox.Show("Cliente: " + Lista.SelectedItem.ToString(),
-                "Información del cliente");
-            }
+            
         }
 
         private void Borrar_Click(object sender, RoutedEventArgs e)
         {
+            // Verificar si hay un cliente seleccionado
+            if (Lista.SelectedItem is Cliente cliente)
+            {
+                if (componente.AceptarRechazar("Cuidado", "¿Está seguro de que quiere borrar el cliente?").Equals(MessageBoxButton.Yes))
+                Lista.Items.Remove(cliente);
+                componente.MostrarMensaje("Información", "El cliente se ha eliminado correctamente", 0);
+            }
+        }
 
-            Lista.Items.Remove(Lista.SelectedItem);
-            Componente componente = new Componente();
-            componente.HacerAlgo();
+        private void Informacion_Click(object sender, RoutedEventArgs e)
+        {
+            if (Lista.SelectedItem is Cliente cliente)
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (Viajes viajes in cliente.viajes)
+                {
+                    sb.Append(viajes.ToString());
+                    sb.Append("\n\n");
+                }
+
+                componente.MostrarMensaje("Información del cliente", "Cliente: " + cliente.ToString() +
+                    "\nDNI: " + cliente.DNI +
+                    "\n\nViajes: \n" + sb.ToString(), 0);
+            }
         }
 
         private void Agregar_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
-            Agregar subWindow = new Agregar();
+            this.IsEnabled = false;
+            Agregar subWindow = new Agregar(this);
+            subWindow.Closed += subWindow_Closed;
             subWindow.Show();
+        }
+
+        private void subWindow_Closed(object sender, EventArgs e)
+        {
+            this.IsEnabled = true;
+        }
+    }
+
+    public class Cliente
+    {
+        public string Nombre { get; set; }
+        public string DNI { get; set; }
+        public List<Viajes> viajes { get; set; }
+
+        public Cliente(string nombre, string dni, List<Viajes> viajes)
+        {
+            Nombre = nombre;
+            DNI = dni;
+            this.viajes = viajes;
+        }
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
+    }
+
+    public class Viajes
+    {
+        public string Origen { get; set; }
+        public string Destino { get; set; }
+        public DateTime FechaIda { get; set; }
+        public DateTime FechaVuelta { get; set; }
+        public string TipoHotel { get; set; }
+        public string TipoTransporte { get; set; }
+        public string TipoViaje { get; set; }
+
+        // Constructor para inicializar algunas propiedades básicas
+        public Viajes(string origen, string destino, DateTime fechaIda, DateTime fechaVuelta, string tipoHotel, string tipoTransporte, string tipoViaje)
+        {
+            Origen = origen;
+            Destino = destino;
+            FechaIda = fechaIda;
+            FechaVuelta = fechaVuelta;
+            TipoHotel = tipoHotel;
+            TipoTransporte = tipoTransporte;
+            TipoViaje = tipoViaje;
+        }
+
+        override
+        public String ToString()
+        {
+            return (Origen + " - " + Destino + 
+                "\nIda: " + FechaIda.Day + "/" + FechaIda.Month + "/" + FechaIda.Year +
+                " -- Vuelta: " + FechaVuelta.Day + "/" + FechaVuelta.Month + "/" + FechaVuelta.Year +
+                "\n" + TipoHotel + 
+                " - " + TipoTransporte + 
+                " --- " + TipoViaje);
         }
     }
 }

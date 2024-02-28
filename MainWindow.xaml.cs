@@ -21,17 +21,28 @@ namespace Troncal
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Componente componente = new Componente();
         public MainWindow()
         {
             InitializeComponent();
 
+            KeyDown += MainWindow_KeyDown;
+
+        }
+
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Boton_Confirmar(sender, e);
+            }
         }
 
         private bool esCorrectoDniContrasenya()
         {
             bool valido = false;
 
-            if (TextDni.Text.Length == 9 && TextPassword.ToString().Length > 3)
+            if (TextDni.Text.Length == 9 && TextPassword.Password.Length > 3)
             {
                 valido = true;
             }
@@ -76,14 +87,15 @@ namespace Troncal
 
                 else
                 {
-                    MessageBox.Show("El DNI es incorrecto");
+                    componente.MostrarMensaje("Error", "El DNI es incorrecto", 2);
                 }
                 
             }
 
             else
             {
-                MessageBox.Show("Debe introducir un DNI y la contraseña mayor de 4 caracteres");
+                componente.MostrarMensaje("Acceso denegado", 
+                    "Debe introducir un DNI y la contraseña mayor de 4 caracteres", 1);
             }
             
         }

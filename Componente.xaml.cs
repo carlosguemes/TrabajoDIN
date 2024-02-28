@@ -25,9 +25,28 @@ namespace Troncal
             InitializeComponent();
         }
 
-        public void HacerAlgo()
+        public void MostrarMensaje(String titulo, String mensaje, int opcionMensaje)
         {
-            MessageBox.Show("Hola manin");
+            if (opcionMensaje == 0)
+            {
+                MessageBox.Show(mensaje, titulo, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            else if (opcionMensaje == 1)
+            {
+                MessageBox.Show(mensaje, titulo, MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+            else if (opcionMensaje == 2)
+            {
+                MessageBox.Show(mensaje, titulo, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+
+        public MessageBoxResult AceptarRechazar(String titulo, String mensaje)
+        {
+            return MessageBox.Show(mensaje, titulo, MessageBoxButton.YesNo, MessageBoxImage.Question);
         }
     }
 }
