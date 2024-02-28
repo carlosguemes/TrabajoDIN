@@ -25,11 +25,20 @@ namespace Troncal
         {
             InitializeComponent();
             this.agregarViaje = agregarViaje;
+
+            Random random = new Random();
+            int numeroAleatorio = random.Next(200, 2001);
+            TextoPago.Text = numeroAleatorio.ToString() + " €"; 
+
+            
         }
 
         private void Click_Continuar(object sender, RoutedEventArgs e)
         {
-
+            agregarViaje.gestionarViajes.comboBox.Items.Add(agregarViaje.viaje);
+ 
+            this.Close();
+            agregarViaje.Close();
         }
 
         private void Click_Cancelar(object sender, RoutedEventArgs e)

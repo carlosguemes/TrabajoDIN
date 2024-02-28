@@ -19,8 +19,10 @@ namespace Troncal
     /// </summary>
     public partial class AgregarViaje : Window
     {
-        private GestionarViajes gestionarViajes;
+        public GestionarViajes gestionarViajes;
         private Componente componente = new Componente();
+        public Viaje viaje { get; set; }
+
         public AgregarViaje(GestionarViajes gestionarViajes)
         {
             InitializeComponent();
@@ -112,10 +114,11 @@ namespace Troncal
                     subWindow.Closed += subWindow_Closed;
                     subWindow.Show();
 
-                    Viaje viaje = new Viaje(origen, destino, (DateTime)fechaIda, (DateTime)fechaVuelta, tipoHotel, tipoTransporte, tipoViaje);
-                    gestionarViajes.comboBox.Items.Add(viaje);
-                    componente.MostrarMensaje("Confirmación", "El viaje se ha añadido con éxito", 0);
-                    this.Close();
+                    viaje = new Viaje(origen, destino, (DateTime)fechaIda, (DateTime)fechaVuelta, tipoHotel, tipoTransporte, tipoViaje);
+                    //gestionarViajes.comboBox.Items.Add(viaje);
+                    //componente.MostrarMensaje("Confirmación", "El viaje se ha añadido con éxito", 0);
+                    //this.Close();
+                
                 }
    
             }
