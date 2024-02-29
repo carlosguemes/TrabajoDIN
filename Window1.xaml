@@ -7,13 +7,39 @@
         mc:Ignorable="d"
         Title="Usuario" Height="450" Width="800"
         ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style x:Key="RoundButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="DeepSkyBlue"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="DodgerBlue"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/paisaje.png" Opacity="0.8"/>
         </Grid.Background>
-        <Button x:Name="GestionaClientes" Content="Gestionar Clientes" HorizontalAlignment="Left" Margin="146,175,0,0" VerticalAlignment="Top" Height="53" Width="144" Click="Gestionar_Clientes" FontSize="16"/>
-        <Button x:Name="GestionaViajes" Content="Gestionar Viajes" HorizontalAlignment="Left" Margin="510,175,0,0" VerticalAlignment="Top" Height="53" Width="144" Click="Gestionar_Viajes" FontSize="16"/>
-        <Button Content="Inicio" HorizontalAlignment="Center" Margin="0,360,0,0" VerticalAlignment="Top" Height="32" Width="80" Click="Volver_Click"/>
+        <Button Style="{StaticResource RoundButtonStyle}" x:Name="GestionaClientes" Content="Gestionar Clientes" HorizontalAlignment="Left" Margin="146,175,0,0" VerticalAlignment="Top" Height="53" Width="144" Click="Gestionar_Clientes" FontSize="16"/>
+        <Button Style="{StaticResource RoundButtonStyle}" x:Name="GestionaViajes" Content="Gestionar Viajes" HorizontalAlignment="Left" Margin="510,175,0,0" VerticalAlignment="Top" Height="53" Width="144" Click="Gestionar_Viajes" FontSize="16"/>
+        <Button Style="{StaticResource RoundButtonStyle}" Content="Inicio" HorizontalAlignment="Center" Margin="0,360,0,0" VerticalAlignment="Top" Height="32" Width="80" Click="Volver_Click"/>
 
 
     </Grid>

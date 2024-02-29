@@ -102,7 +102,12 @@ namespace Troncal
                 tipoTransporte != "" &&
                 tipoViaje != "")
             {
-                if (fechaIda >= fechaVuelta)
+                if (fechaIda <= DateTime.Now)
+                {
+                    componente.MostrarMensaje("Error", "La fecha de ida no puede ser anterior a la fecha de hoy", 2);
+                }
+
+                else if (fechaIda >= fechaVuelta)
                 {
                     componente.MostrarMensaje("Error", "La fecha de ida no puede ser posterior a la fecha de vuelta", 2);
                 }
@@ -115,9 +120,6 @@ namespace Troncal
                     subWindow.Show();
 
                     viaje = new Viaje(origen, destino, (DateTime)fechaIda, (DateTime)fechaVuelta, tipoHotel, tipoTransporte, tipoViaje);
-                    //gestionarViajes.comboBox.Items.Add(viaje);
-                    //componente.MostrarMensaje("Confirmación", "El viaje se ha añadido con éxito", 0);
-                    //this.Close();
                 
                 }
    

@@ -43,8 +43,9 @@
         </ComboBox>
         <Label Content="Gestión de viajes" HorizontalAlignment="Center" Margin="0,33,0,0" VerticalAlignment="Top" Height="28" Width="122" Background="White" FontSize="14" FontWeight="Bold"/>
         <Label Content="Información de viajes" HorizontalAlignment="Center" Margin="0,168,0,0" VerticalAlignment="Top" Height="28" Width="122" Background="White"/>
-        <Button Style="{StaticResource RoundButtonStyle}" Content="Borrar" HorizontalAlignment="Center" Margin="0,268,0,0" VerticalAlignment="Top" Height="30" Width="54" Click="Borrar_Click"/>
-        <Button Style="{StaticResource RoundButtonStyle}" Content="Agregar viaje" Margin="567,172,0,0" Width="111" Height="51" Click="Agregar_Click"/>
+        <Button Style="{StaticResource RoundButtonStyle}" Content="Borrar" Margin="425,324,0,0" Height="30" Width="54" Click="Borrar_Click"/>
+        <Button Style="{StaticResource RoundButtonStyle}" Content="Agregar viaje" Margin="567,172,0,0" Width="111" Height="51" Click="Agregar_Click" FontWeight="Bold"/>
+        <Button Style="{StaticResource RoundButtonStyle}" Content="Información" Margin="313,321,0,0" Width="72" Height="33" Click="Informacion_Click"/>
 
     </Grid>
 </Window>

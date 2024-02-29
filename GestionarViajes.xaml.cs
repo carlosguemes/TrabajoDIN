@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,8 @@ namespace Troncal
     /// </summary>
     public partial class GestionarViajes : Window
     {
+
+        private Componente componente = new Componente();
 
         public GestionarViajes()
         {
@@ -43,15 +46,26 @@ namespace Troncal
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (comboBox.SelectedItem != null)
-            {
-                MessageBox.Show(comboBox.SelectedItem.ToString(), "Información del viaje");
-            }    
+             
         }
 
         private void Borrar_Click(object sender, RoutedEventArgs e)
         {
-            comboBox.Items.Remove(comboBox.SelectedItem);
+            if (comboBox.SelectedItem is Viaje viaje)
+            {
+                if (componente.AceptarRechazar("Cuidado",
+                    "¿Está seguro de que quiere borrar el viaje?").Equals(MessageBoxResult.Yes))
+                {
+                    comboBox.Items.Remove(viaje);
+                    componente.MostrarMensaje("Información", "El viaje se ha eliminado correctamente", 0);
+                }
+
+            }
+
+            else
+            {
+                componente.MostrarMensaje("Advertencia", "Debe seleccionar un viaje", 1);
+            }
         }
 
         private void Agregar_Click(object sender, RoutedEventArgs e)
@@ -65,6 +79,19 @@ namespace Troncal
         private void subWindow_Closed(object sender, EventArgs e)
         {
             this.IsEnabled = true;
+        }
+
+        private void Informacion_Click(object sender, RoutedEventArgs e)
+        {
+            if (comboBox.SelectedItem is Viaje viaje)
+            {
+                componente.MostrarMensaje("Información del viaje", "Viaje: " + viaje.ToString(), 0);
+            }
+
+            else
+            {
+                componente.MostrarMensaje("Advertencia", "Debe seleccionar un viaje", 1);
+            }
         }
     }
 
